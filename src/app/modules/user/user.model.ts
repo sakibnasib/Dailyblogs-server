@@ -19,14 +19,26 @@ const userSchema = new Schema<IUserDoc>(
 			trim: true,
 			unique: true,
 		},
-		first_name: {
+		firstName: {
 			type: String,
 			required: true,
 			trim: true,
 		},
-		last_name: {
+		lastName: {
 			type: String,
 			required: true,
+			trim: true,
+		},
+		phoneNumber: {
+			type: String,
+			trim: true,
+		},
+		profession: {
+			type: String,
+			trim: true,
+		},
+		profileImage: {
+			type: String,
 			trim: true,
 		},
 		password: {
@@ -56,7 +68,7 @@ const userSchema = new Schema<IUserDoc>(
 
 // * Hash password and create username before saving the user in DB.
 userSchema.pre('save', async function (next) {
-	const base = this.first_name?.toLowerCase()?.replace(/\s+/g, '_');
+	const base = this.firstName?.toLowerCase()?.replace(/\s+/g, '_');
 	let userName = base;
 	let suffix = 0;
 
